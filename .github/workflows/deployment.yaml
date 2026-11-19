@@ -11,6 +11,7 @@ jobs:
       - name: Check syntax errors
         run: npm run lint
   test:
+    needs: lint
     runs-on: ubuntu-latest
     steps:
       - name: Get our project
@@ -20,7 +21,7 @@ jobs:
       - name: Test project
         run: npm run test
   deploy:
-    needs: build
+    needs: test
     runs-on: ubuntu-latest
     steps:
       - name: Get our project
